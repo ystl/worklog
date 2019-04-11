@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>工作计划管理</title>
+    <link rel="stylesheet" href="layUI/frame/layui/css/layui.css">
+    <link rel="stylesheet" href="layUI/frame/static/css/style.css">
+    <link rel="icon" href="image/logo.ico">
+</head>
+<body>
+<script>
+    var data = document.getElementById('data');
+    console.log(data);
+</script>
+<div class="layui-layout layui-layout-admin">
+
+    <!-- header -->
+    <div class="layui-header my-header">
+        <a href="#">
+            <div class="my-header-logo">工作计划管理</div>
+        </a>
+        <div class="my-header-btn">
+            <button class="layui-btn layui-btn-small btn-nav"><i class="layui-icon">&#xe65f;</i></button>
+        </div>
+    </div>
+
+    <!-- side -->
+    <div class="layui-side my-side">
+        <div class="layui-side-scroll">
+            <!-- 左侧主菜单添加选项卡监听 -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="side-main">
+                <li class="layui-nav-item"><a href="javascript:;" href-url="personal_plan.html"><i class="layui-icon">&#xe66e;</i>个人计划</a></li>
+                <li class="layui-nav-item"><a href="javascript:;" href-url="all_plan.html"><i class="layui-icon">&#xe629;</i>本月计划</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- body -->
+    <div class="layui-body my-body">
+        <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe66e;</i>个人计划</span></li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <iframe id="iframe" src="personal_plan.html" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="layUI/frame/layui/layui.js"></script>
+<script type="text/javascript" src="layUI/frame/static/js/vip_comm.js"></script>
+
+</body>
+</html>
