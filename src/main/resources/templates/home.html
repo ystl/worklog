@@ -11,9 +11,8 @@
     <link rel="icon" href="image/logo.ico">
 </head>
 <body>
-<script>
-    var data = document.getElementById('data');
-    console.log(data);
+<script type="text/javascript">
+    localStorage.host = 'localhost:8090';
 </script>
 <div class="layui-layout layui-layout-admin">
 
@@ -46,7 +45,7 @@
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <iframe id="iframe" src="personal_plan.html" frameborder="0"></iframe>
+                    <iframe id="iframe" frameborder="0"></iframe>
                 </div>
             </div>
         </div>
@@ -56,6 +55,25 @@
 
 <script type="text/javascript" src="layUI/frame/layui/layui.js"></script>
 <script type="text/javascript" src="layUI/frame/static/js/vip_comm.js"></script>
-
+<script src="js/jquery.min.js"></script>
+<script>
+    $.ajax({
+        url: "init",
+        method: 'POST',
+        success: function (data) {
+            console.log(data);
+            var frame = document.getElementById("iframe");
+            console.log(data['data']['state']);
+            if(data['data']['state'] === '1') {
+                frame.src = "personal_plan.html";
+            }else {
+               frame.src = "personal_plan_notfound.html";
+            }
+        },
+        fail: function (fail) {
+            console.log(fail);
+        }
+    });
+</script>
 </body>
 </html>

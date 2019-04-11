@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -18,6 +19,29 @@ public class IndexController {
 
     @Resource
     UserRepository userRepository;
+
+    @RequestMapping("init")
+    @ResponseBody
+    public CommonMsg init(HttpSession session) {
+        User user = (User) session.getAttribute("TDUSER");
+        CommonMsg cm = new CommonMsg(user);
+        return cm;
+    }
+
+    @RequestMapping("add")
+    @ResponseBody
+    public CommonMsg add(HttpSession session, User user) {
+        System.out.println("update---------");
+        System.out.println(user.toString());
+        User nowUser = (User) session.getAttribute("TDUSER");
+        Date date = new Date();
+        nowUser.setCreateTime(date);
+        nowUser.setPlanDesc(user.getPlanDesc());
+        nowUser.setState("1");
+        userRepository.saveAndFlush(nowUser);
+        return new CommonMsg();
+
+    }
 
     @RequestMapping("/")
     public ModelAndView index(HttpSession session) {
