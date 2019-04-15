@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -28,6 +29,13 @@ public class IndexController {
         return cm;
     }
 
+    @RequestMapping("all-plan")
+    @ResponseBody
+    public List<User> getAllPlan(HttpSession session) {
+        List<User> userList = userRepository.findAll();
+        return userList;
+    }
+
     @RequestMapping("add")
     @ResponseBody
     public CommonMsg add(HttpSession session, User user) {
@@ -38,6 +46,7 @@ public class IndexController {
         nowUser.setCreateTime(date);
         nowUser.setPlanDesc(user.getPlanDesc());
         nowUser.setState("1");
+        nowUser.setPlanDesc(nowUser.getPlanDesc().replaceAll("\n","::n"));
         userRepository.saveAndFlush(nowUser);
         return new CommonMsg();
 

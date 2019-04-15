@@ -67,6 +67,14 @@
         });
     });
 </script>
+<script>
+    $(document).keyup(function(event){
+        if(event.keyCode ==13){
+            $("#login_btn").trigger("click");
+        }
+    });
+</script>
+
 <!--<script type="text/javascript">-->
     <!--layui.use(['form'], function () {-->
         <!--var form = layui.form-->
