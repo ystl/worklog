@@ -44,9 +44,16 @@ public class IndexController {
         User nowUser = (User) session.getAttribute("TDUSER");
         Date date = new Date();
         nowUser.setCreateTime(date);
-        nowUser.setPlanDesc(user.getPlanDesc());
         nowUser.setState("1");
-        nowUser.setPlanDesc(nowUser.getPlanDesc().replaceAll("\n","::n"));
+
+        if(user.getPlanDesc()!=null) {
+            System.out.println("ooook");
+            nowUser.setPlanDesc(user.getPlanDesc().replaceAll("\n","::n"));
+        }
+        if(user.getProgress()!=null) {
+            nowUser.setProgress(user.getProgress().replaceAll("\n","::n"));
+        }
+        System.out.println(nowUser);
         userRepository.saveAndFlush(nowUser);
         return new CommonMsg();
 
@@ -90,6 +97,12 @@ public class IndexController {
         session.setAttribute("TDUSER", verifyUser);
         System.out.println("ok");
         return cm;
+    }
+
+    @RequestMapping("/quit")
+    public String quit(HttpSession session) {
+        session.removeAttribute("TDUSER");
+        return "redirect:/";
     }
 
 }

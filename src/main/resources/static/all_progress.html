@@ -12,10 +12,10 @@
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title">
-    <legend>本月工作总结与下月计划</legend>
+    <legend>本月工作进展</legend>
 </fieldset>
 <div class="layui-container">
-    <h1>本月全体工作总结与计划如下：</h1>
+    <h1>本月全体工作进展如下：</h1>
     <div id="all_plan">
         <!-- 此处写入工作计划 -->
     </div>
@@ -37,8 +37,8 @@
             $('#all_plan').html();
             for(var i=0; i<res.length; i++) {
                 console.log(res[i]['username']);
-                if(res[i]['planDesc'].length>0) {
-                    plan(res[i]['username'],res[i]['planDesc']);
+                if(res[i]['progress'].length>0) {
+                    plan(res[i]['username'],res[i]['progress']);
                 }
             }
 

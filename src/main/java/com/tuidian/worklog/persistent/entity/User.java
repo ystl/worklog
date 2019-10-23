@@ -12,6 +12,7 @@ public class User {
     private String username;
     private String password;
     private String planDesc;
+    private String progress;
     private Date createTime;
     private Date updateTime;
     private String state;
@@ -57,6 +58,16 @@ public class User {
     }
 
     @Basic
+    @Column(name = "progress")
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
+    }
+
+    @Basic
     @Column(name = "create_time")
     public Date getCreateTime() {
         return createTime;
@@ -93,6 +104,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", planDesc='" + planDesc + '\'' +
+                ", progress='" + progress + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", state='" + state + '\'' +

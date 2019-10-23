@@ -24,6 +24,15 @@
         <div class="my-header-btn">
             <button class="layui-btn layui-btn-small btn-nav"><i class="layui-icon">&#xe65f;</i></button>
         </div>
+
+        <!-- 顶部右侧添加选项卡监听 -->
+        <ul class="layui-nav my-header-user-nav" lay-filter="side-top-right">
+
+
+            <li class="layui-nav-item">
+                <a href="/quit">[退出]</a>
+            </li>
+        </ul>
     </div>
 
     <!-- side -->
@@ -31,8 +40,18 @@
         <div class="layui-side-scroll">
             <!-- 左侧主菜单添加选项卡监听 -->
             <ul class="layui-nav layui-nav-tree" lay-filter="side-main">
-                <li class="layui-nav-item"><a href="javascript:;" href-url="personal_plan.html"><i class="layui-icon">&#xe66e;</i>个人计划</a></li>
-                <li class="layui-nav-item"><a href="javascript:;" href-url="all_plan.html"><i class="layui-icon">&#xe629;</i>本月计划</a></li>
+                <li class="layui-nav-item"><a href="javascript:;"><i class="layui-icon">&#xe66e;</i>工作总结与计划</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" href-url="personal_plan.html">个人总结与计划</a></dd>
+                        <dd><a href="javascript:;" href-url="all_plan.html">全员总结与计划</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="javascript:;" ><i class="layui-icon">&#xe629;</i>工作进展与困难</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" href-url="personal_progress.html">个人进展与困难</a></dd>
+                        <dd><a href="javascript:;" href-url="all_progress.html">全员进展与困难</a></dd>
+                    </dl>
+                </li>
             </ul>
         </div>
     </div>
@@ -41,11 +60,11 @@
     <div class="layui-body my-body">
         <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
             <ul class="layui-tab-title">
-                <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe66e;</i>个人计划</span></li>
+                <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe66e;</i>欢迎页</span></li>
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <iframe id="iframe" frameborder="0"></iframe>
+                    <iframe id="iframe" frameborder="0" src="welcome.html"></iframe>
                 </div>
             </div>
         </div>
@@ -56,24 +75,5 @@
 <script type="text/javascript" src="layUI/frame/layui/layui.js"></script>
 <script type="text/javascript" src="layUI/frame/static/js/vip_comm.js"></script>
 <script src="js/jquery.min.js"></script>
-<script>
-    $.ajax({
-        url: "init",
-        method: 'POST',
-        success: function (data) {
-            console.log(data);
-            var frame = document.getElementById("iframe");
-            console.log(data['data']['state']);
-            if(data['data']['state'] === '1') {
-                frame.src = "personal_plan.html";
-            }else {
-               frame.src = "personal_plan_notfound.html";
-            }
-        },
-        fail: function (fail) {
-            console.log(fail);
-        }
-    });
-</script>
 </body>
 </html>
